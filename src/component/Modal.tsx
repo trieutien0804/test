@@ -3,28 +3,35 @@ import styles from "../css/Modal.module.css";
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
-  pathId: string;
+  data?: { pathId: string; x: number; y: number };
 }
 
-const Modal = ({ isOpen, onClose, pathId }: ModalProps) => {
-  if (!isOpen) return null;
+const Modal = ({ isOpen, onClose, data }: ModalProps) => {
+  if (!isOpen || !data) return null;
 
   return (
-    <div className={styles.modalContent}>
-      <h3>Thông tin cho phần {pathId}</h3>
+    <div
+      style={{
+        position: "absolute",
+        top: `${data.y}px`,
+        left: `${data.x}px`,
+      }}
+      className={styles.modalContent}
+    >
+      <h3>Thông tin cho phần {data.pathId}</h3>
       <div className={styles.formGroup}>
-        <input type="text" placeholder="Tên" />
+        <input type="text" placeholder="Thông tin 1" />
       </div>
       <div className={styles.formGroup}>
-        <input type="text" placeholder="Mô tả" />
+        <input type="text" placeholder="Thông tin 2" />
       </div>
       <div className={styles.formGroup}>
-        <input type="text" placeholder="Giá trị" />
+        <input type="text" placeholder="Thông tin 3" />
       </div>
       <div className={styles.formGroup}>
-        <input type="text" placeholder="Ghi chú" />
+        <input type="text" placeholder="Thông tin 4" />
       </div>
-      <button className={styles.buttonbutton} onClick={onClose}>
+      <button className={styles.button} onClick={onClose}>
         Đóng
       </button>
     </div>
