@@ -51,7 +51,7 @@ const Test = () => {
 
   return (
     <div>
-      <svg ref={svgRef} width={700} height={750} />
+      <svg ref={svgRef} width={700} height={750} transform="translate(0, -100)" />
       <Modal
         isOpen={!!selectedModal}
         onClose={() => setSelectedModal(null)}
